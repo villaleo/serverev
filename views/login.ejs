@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Login </title>
+  <link rel="stylesheet" href="/css/style.css">
+   <%- include("partials/bootstrap.ejs") %>
+         <!-- Import Fonts -->
+   <%- include("partials/fonts.ejs") %>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">ServeRev</a>
+      <form id="searchForm" class="d-flex">
+
+      <a href="/goBack">
+   <button class="btn btn-success" type="submit" formaction="/">Go Back</button>
+      </a>  
+       </form>
+    </div>
+  
+</nav>
+  <fieldset id = "loginForm">
+    <form id="login-form" class="form" action="/login" method="POST">
+                  <h2 class="text-center text-primary">Login</h2>
+  
+      <label for="username" class="text-primary">Username:</label><br>
+      <input type="text" name="username"><br>
+                  
+      <label for="password" class="text-primary">Password:</label><br>
+      <input type="password" name="password"><br>
+
+        <% if(typeof(error) != "undefined"){ %>
+            <span style="color: red;"><%= error %><br></span>
+      <% } %>
+
+        <br>
+
+        <% if(typeof(message) != "undefined"){ %>
+            <span style="color: green;"><%= message %><br></span>
+        <% } %>
+
+        Don't have an account? <a href="/register">Sign up for one</a>! <br>
+      <b><button class="btn btn-primary btn-md">Login   
+      </button></b>
+    </form>
+
+ </fieldset>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
+          <script src="/js/script.js"></script>
+</body>
+</html>

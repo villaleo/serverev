@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServeRev</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Import Bootstrap -->
+    <%- include("partials/bootstrap.ejs") %>
+    <!-- Import Fonts -->
+    <%- include("partials/fonts.ejs") %>
+
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/welcome">ServeRev</a>
+            <form id="searchForm" class="d-flex">
+                <input class="form-control me-2" type="text" placeholder="Enter a restaurant.." name="search" id="search">
+                <button class="btn btn-warning" type="submit" style="margin-right: 20px;">Search</button>
+                <% if (authed) { %>
+                    <a href="/logout">
+                        <button class="btn btn-danger" type="submit" formaction="/logout">Logout</button>
+                    </a>
+                <% } else { %>
+                    <a href="/logout">
+                        <button class="btn btn-success" type="submit" formaction="/login">Login</button>
+                    </a>
+                <% } %>
+            </form>
+        </div>
+    </nav>
+    </header>
+    <main class = "searchMain">
+        <br>
+
+        <h5 style="margin-left: 20px;">Results for "<%= search %>"</h5> 
+      <br>
+      <div class="HView">
+      
+            <% for (let i = 0; i < results.length; i++) { %>
+                <div class="HVItem">
+                    <h3><%= results[i].name %></h3>
+                    <div>
+                        <img class="img-thumbnail thumb-size" src="<%= results[i].picture %>">
+                        <div class="rating">
+                            <% for (let a=0; a < results[i].rating; a++){ %>
+                                ⭐️
+                            <% } %>
+                        </div>
+                        <% if (authed) { %>
+                            <a href="/addReview/<%= results[i].id %>">
+                                <button class="btn btn-success" id = "RevBtn1">Review</button>
+                            </a><br>
+                        <% } %>
+                        <a href="/reviews-for/<%= results[i].id %>" class = "VRFont"> View reviews </a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </main>
+<!--     <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script> -->
+  <script src="/js/script.js"></script>
+</body>
+</html>

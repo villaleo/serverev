@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServeRev</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Import Bootstrap -->
+    <%- include("partials/bootstrap.ejs") %>
+    <!-- Import Fonts -->
+    <%- include("partials/fonts.ejs") %>
+
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">ServeRev</a>
+                <form id="searchForm" class="d-flex" action="/results">
+                    <input class="form-control me-2" type="text" placeholder="Enter a restaurant.." name="search" id="search">
+                    <button class="btn btn-warning" type="submit"style="margin-right: 20px;">Search</button>
+                    <button class="btn btn-success" type="submit" formaction="/login">Login</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main id="homeMain"class="allBody">
+        <br>
+        <h4 style="margin-left: 20px;" class = "popRes">Popular restaurants</h4>
+        <div class="HView">
+        <% for (let i=0; i < restaurants.length; i++){ %>
+            <div class = "HVItem">
+                <%= restaurants[i].name %>
+                <div>  
+                    <img src="<%= restaurants[i].picture%>" class="thumbSize">
+                    <div class="rating">
+                        <% for (let a=0; a<restaurants[i].rating; a++){ %>
+                            ⭐️
+                        <% } %>
+                    </div>
+                    <a href="/reviews-for/<%=restaurants[i].id%>" class = "VRFont"> View reviews </a>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    
+    Sign in to leave reviews.
+    <br>
+    </main>
+          <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
+          <script src="/js/script.js"></script>
+</body>
+</html>

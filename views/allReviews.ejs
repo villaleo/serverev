@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServeRev</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Import Bootstrap -->
+    <%- include("partials/bootstrap.ejs") %>
+    <!-- Import Fonts -->
+    <%- include("partials/fonts.ejs") %>
+
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/welcome">ServeRev</a>
+            <form id="searchForm" class="d-flex">
+                <input class="form-control me-2" type="text" placeholder="Enter a restaurant.." name="search" id="search">
+                <button class="btn btn-warning" type="submit" style="margin-right: 20px;">Search</button>
+                <% if (authed) { %>
+                    <a href="/logout">
+                        <button class="btn btn-danger" type="submit" formaction="/logout">Logout</button>
+                    </a>
+                <% } else { %>
+                    <a href="/logout">
+                        <button class="btn btn-success" type="submit" formaction="/login">Login</button>
+                    </a>
+                <% } %>
+            </form>
+        </div>
+    </nav>
+    </header>
+    <main id="AllRevs" class="allBody">
+        <br>
+      <div>
+<!--         <h5 style="margin-left: 20px;">Reviews for <%= restaurant.name %></h5> -->
+        <h5>Reviews for <%= restaurant.name %></h5>
+        <img src="<%= restaurant.picture %>" width="600px" height="400px">
+
+        <div class="HView">
+            <% for (let review of reviews) { %>
+                <div class="HVItem">
+                    <h6><%= review.first_name %> <%= review.last_name %></h6>
+                    <div>
+                        <div class="rating">
+                            <% for (let i = 0; i < review.rating; i++){ %>
+                                ⭐
+                            <% } %>
+                        </div>
+                        <p>
+                            <%= review.details %>
+                        </p>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+        <% if (authed) { %>
+            <a href="/welcome">
+        <% } else { %>
+            <a href="/">
+        <% } %>
+          <br>
+            <button class="btn btn-warning btn-md">Back</button>
+        </a>
+    </main>
+
+    <script src="/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/09e8ad6536.js" crossorigin="anonymous"></script>
+</body>
+</html>

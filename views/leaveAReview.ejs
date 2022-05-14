@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServeRev</title>
+    <link rel="stylesheet" href="/css/style.css">
+  <script src="https://kit.fontawesome.com/09e8ad6536.js" crossorigin="anonymous"></script>
+
+    <!-- Import Bootstrap -->
+    <%- include("partials/bootstrap.ejs") %>
+        <!-- Import Fonts -->
+    <%- include("partials/fonts.ejs") %>
+</head>
+<body class = "lrBody">
+    <header>
+        <!-- Navigation -->
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/welcome">ServeRev</a>
+                <form id="searchForm" class="d-flex">
+                    <input class="form-control me-2" type="text" placeholder="Enter a restaurant.." name="search" id="search">
+                    <button class="btn btn-warning" type="submit" style="margin-right: 20px;">Search</button>
+                    <a href="/logout">
+                        <button class="btn btn-danger" type="submit" formaction="/logout">Logout</button>
+                    </a>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+    <div id="newRevMain" class="allBody">
+        <br>
+      <div class = "reviewBlock">
+        <h5 style="margin-left: 20px;">Leaving a review for
+          <%= name %></h5>
+        <img src="">
+
+        <form action="/addReview" method="post">
+            <input type="hidden" name="restaurant" value="<%= restaurant %>">
+            
+            Rating:
+<!--             <input type="radio" name="rating" id="1" value="1" class="star star1">
+            <label for="1" class="star star1"></label>
+            <input type="radio" name="rating" id="2" value="2" class="star star2">
+            <label for="2" class="star star2"></label>
+            <input type="radio" name="rating" id="3" value="3" class="star star3">
+            <label for="3" class="star star3"></label>
+            <input type="radio" name="rating" id="4" value="4" class="star star4">
+            <label for="4" class="star star4"></label>
+            <input type="radio" name="rating" id="5" value="5" class="star star5">
+            <label for="5" class="star star5"></label> -->
+<input type="radio" name="rating" id="5" value="5" class="star star5">
+            <label for="5" class="star star5"></label>
+            <input type="radio" name="rating" id="4" value="4" class="star star4">
+            <label for="4" class="star star4"></label>
+            <input type="radio" name="rating" id="3" value="3" class="star star3">
+            <label for="3" class="star star3"></label>
+            <input type="radio" name="rating" id="2" value="2" class="star star2">
+            <label for="2" class="star star2"></label>
+<input type="radio" name="rating" id="1" value="1" class="star star1">
+            <label for="1" class="star star1"></label>
+            <br>
+            Details:
+            <textarea name="details" id="addDetailsTextArea"></textarea>
+            <br>
+            <button class="btn btn-success">Leave review</button>
+        </form>
+        <form action="/welcome">
+          <button class="btn btn-danger">Go back</button>
+        </form>
+      </div>
+    </div>
+    </main>
+</body>
+</html>

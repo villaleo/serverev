@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServeRev</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/09e8ad6536.js" crossorigin="anonymous"></script>
+
+    <!-- Import Bootstrap -->
+    <%- include("partials/bootstrap.ejs") %>
+    <!-- Import Fonts -->
+    <%- include("partials/fonts.ejs") %>
+    <!-- Underscore.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.3/underscore-umd-min.js"></script>
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/welcome">ServeRev</a>
+        <form id="searchForm" class="d-flex" action="/results">
+            <input class="form-control me-2" type="text" placeholder="Enter a restaurant.." name="search" id="search">
+            <button class="btn btn-warning" type="submit" style="margin-right: 20px;">Search</button>
+            <button class="btn btn-danger" type="submit" formaction="/logout">Logout</button>
+        </form>
+    </div>
+</nav>
+    </header>
+    <main class="allBody">
+        <h4 id = "urRev" style="margin-left: 20px;"><b>YOUR REVIEWS </b></h4>
+<br>
+        <!-- Reviews for the current user -->
+        <div class="VView">
+            <% for (let i=0; i < reviews.length; i++) { %>
+                <div class="VVItem">
+                     <%= reviews[i].name%>
+                    <div class="rating">
+                     <% for (let a = 0; a < reviews[i].rating; a++){ %>
+                        ⭐️
+                     <% } %>
+                   
+                    </div>
+                    <p>
+                     <%= reviews[i].details%><br>
+                    </p>
+                    <a href="#" class="editable" id="<%= reviews[i].id%>">
+                        <button class="btn btn-warning">Edit</button>
+                    </a>
+                    <a href="/deleteReview/<%= reviews[i].id %>">
+                        <button class="btn btn-danger">Delete <span class="bi bi-trash"></span></button>
+                    </a>
+                </div>
+            <% } %>
+        </div>
+
+        <form id="revButton" action="/welcome">
+            <button class="btn btn-success">Back to home</button>
+        </form>
+    </main>
+
+     <!-- Modal -->
+  <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="modalBody">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reviewModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+        </div>
+        <form method="POST" action="/updateReview">
+            <div id="hiddenId"></div>
+            
+            <div class="modal-body">
+                <h3>Rating:</h3>
+                <div id="ratingInput"></div>
+
+                <h3>Details:</h3>
+                <textarea id="details" name="details"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Update
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" formaction="/edit-reviews">
+                    Cancel
+                </button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+    <script src="js/script.js">
+    </script>
+</body>
+</html>

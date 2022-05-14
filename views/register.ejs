@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Login </title>
+  <link rel="stylesheet" href="/css/style.css">
+   <%- include("partials/bootstrap.ejs") %>
+         <!-- Import Fonts -->
+   <%- include("partials/fonts.ejs") %>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">ServeRev</a>
+      <form id="searchForm" class="d-flex">
+
+      <a href="/goBack">
+   <button class="btn btn-success" type="submit" formaction="/">Go Back</button>
+      </a>  
+       </form>
+    </div>
+  
+</nav>
+  <fieldset id = "loginForm">
+
+    <form id="register-form" class="form" action="/register" method="POST">
+        <h2 class="text-center text-primary">Sign Up</h2>
+
+        <label for="firstName" class="text-primary">First name:</label><br>
+        <input type="text" name="firstName"><br>
+
+        <label for="lastName" class="text-primary">Last name:</label><br>
+        <input type="text" name="lastName"><br>
+  
+        <label for="username" class="text-primary">Username:</label><br>
+        <input type="text" name="username"><br>
+                  
+        <label for="password" class="text-primary">Password:</label><br>
+        <input type="password" name="password"><br>
+
+        <% if(typeof(error) != "undefined"){ %>
+            <span style="color: red;"><%= error %><br></span>
+        <% } %>
+        
+        <br>
+                  
+        Already have an account? <a href="/login">Sign in</a>! <br>
+        <button class="btn btn-primary btn-md">Register</button>
+    </form>
+
+ </fieldset>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
+  <script src="/js/script.js"></script>
+</body>
+</html>
